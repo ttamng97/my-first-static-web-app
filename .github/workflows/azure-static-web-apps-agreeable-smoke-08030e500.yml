@@ -15,13 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-    - task: AzureStaticWebApp@0
-        displayName: 'Deploy to Azure Static Web App'
-      inputs:
-      cwd: '$(Agent.BuildDirectory)/FrontEnd/bin'
-      app_location: '/'
-      skip_app_build: true
-      azure_static_web_apps_api_token: ${{parameters.deploymentTokenFrontEnd}}
       - uses: actions/checkout@v3
         with:
           submodules: true
