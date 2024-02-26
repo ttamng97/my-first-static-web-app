@@ -32,7 +32,13 @@ jobs:
           api_location: "Api" # Api source code path - optional
           output_location: "wwwroot" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
-
+   - task: AzureStaticWebApp@0
+    displayName: 'Deploy to Azure Static Web App'
+    inputs:
+      cwd: '$(Agent.BuildDirectory)/FrontEnd/bin'
+      app_location: '/'
+      skip_app_build: true
+      azure_static_web_apps_api_token: ${{parameters.deploymentTokenFrontEnd}}
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
